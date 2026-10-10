@@ -1,0 +1,262 @@
+/* =========================================================
+   AR Automotive — simple style, built mobile-first
+   Base styles target the smallest screens (320px and up).
+   min-width media queries add layout only when the content
+   has room for it.
+   ========================================================= */
+
+:root {
+  --bg: #111111;
+  --text: #f2f2f2;
+  --muted: #8a8a8a;
+  --line: #262626;
+  --accent: #ff5a1f;
+  --gutter: 1.25rem;
+  --max: 60rem;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+/* media never wider than its container */
+img, video { display: block; max-width: 100%; height: auto; }
+
+a { color: var(--text); }
+
+/* ---------- NAV (Flexbox: items flow in one direction) ---------- */
+.topbar {
+  display: flex;
+  flex-direction: column;       /* stacked on narrow screens */
+  align-items: flex-start;
+  gap: .5rem;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.25rem var(--gutter);
+}
+
+.brand {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.topbar ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.topbar ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .95rem;
+  transition: color .2s;
+}
+
+.topbar ul a:hover,
+.topbar ul a:focus-visible { color: var(--text); }
+
+/* ---------- HERO ---------- */
+.hero {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 3.5rem var(--gutter) 4rem;
+}
+
+.eyebrow,
+.label {
+  color: var(--accent);
+  font-size: .85rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 9vw, 4.75rem);
+  line-height: 1.05;
+  letter-spacing: -.03em;
+  max-width: 14ch;
+  margin-bottom: 1.25rem;
+}
+
+.lede {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 40ch;
+  margin-bottom: 2rem;
+}
+
+/* ---------- BUTTON ---------- */
+.btn {
+  display: inline-block;
+  padding: .8rem 1.6rem;
+  font: inherit;
+  font-size: .95rem;
+  font-weight: 500;
+  color: #111;
+  background: var(--text);
+  border: 0;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.btn:hover,
+.btn:focus-visible { background: var(--accent); }
+
+/* ---------- SECTIONS (Grid: label column + content column) ---------- */
+main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);   /* one column on small screens */
+  padding: 3.5rem 0;
+  border-top: 1px solid var(--line);
+}
+
+h2 {
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  margin-bottom: 1.25rem;
+}
+
+section p { color: #bdbdbd; max-width: 62ch; margin-bottom: 1rem; }
+
+video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #1c1c1c;
+  border-radius: 10px;
+  margin: .5rem 0 1.25rem;
+}
+
+.note { font-size: .95rem; color: var(--muted); }
+.note a { color: var(--accent); }
+
+/* ---------- CONTACT FORM (Grid: labels and fields align in rows/columns) ---------- */
+#section4 { border-top: 0; padding-top: 0; }
+
+#contactForm {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: .5rem;
+  max-width: 40rem;
+}
+
+#contactForm label {
+  font-size: .85rem;
+  color: var(--muted);
+  margin-top: .5rem;
+}
+
+#contactForm input,
+#contactForm textarea {
+  width: 100%;
+  min-width: 0;
+  padding: .8rem 1rem;
+  font: inherit;
+  color: var(--text);
+  background: #181818;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color .2s;
+}
+
+#contactForm textarea { min-height: 140px; resize: vertical; }
+
+#contactForm input:focus,
+#contactForm textarea:focus { border-color: var(--accent); }
+
+#contactForm .btn { justify-self: start; margin-top: 1rem; }
+
+.form-status { color: var(--accent); font-size: .95rem; margin-top: .5rem; }
+
+/* ---------- FOOTER (Flexbox) ---------- */
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .5rem 1rem;
+  width: min(100% - 2 * var(--gutter), var(--max) - 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 2rem 0;
+  border-top: 1px solid var(--line);
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+footer a { color: var(--muted); text-decoration: none; }
+footer a:hover,
+footer a:focus-visible { color: var(--text); }
+
+/* =========================================================
+   BREAKPOINTS — chosen where the content breaks,
+   not by device names.
+   ========================================================= */
+
+/* 30em (~480px): the brand and the three nav links now fit on
+   one line, so the nav switches from stacked to a single row. */
+@media (min-width: 30em) {
+  .topbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar ul { gap: 1.75rem; }
+}
+
+/* 42em (~672px): each form field can be at least ~18em wide,
+   so Name and Email sit side by side with their labels aligned
+   in the same rows. */
+@media (min-width: 42em) {
+  #contactForm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.5rem;
+  }
+  #contactForm label[for="name"]    { grid-column: 1; grid-row: 1; }
+  #contactForm #name                { grid-column: 1; grid-row: 2; }
+  #contactForm label[for="email"]   { grid-column: 2; grid-row: 1; }
+  #contactForm #email               { grid-column: 2; grid-row: 2; }
+  #contactForm label[for="message"],
+  #contactForm #message,
+  #contactForm .btn,
+  #contactForm .form-status         { grid-column: 1 / -1; }
+
+  .hero { padding: 6rem var(--gutter) 5rem; }
+  section { padding: 5rem 0; }
+}
+
+/* 64em (~1024px): there is enough width for a side column, so
+   every section's label sits in its own column and all section
+   content lines up on the same vertical edge. */
+@media (min-width: 64em) {
+  section {
+    grid-template-columns: 10rem minmax(0, 1fr);
+    column-gap: 3rem;
+  }
+  section > .label { grid-column: 1; grid-row: 1 / span 10; padding-top: .6rem; }
+  section > :not(.label) { grid-column: 2; }
+
+  .hero { padding: 7rem var(--gutter) 6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
